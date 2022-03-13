@@ -1,4 +1,4 @@
-class Grass {
+class LivingCreature {
     constructor(x, y, index) {
         this.x = x;
         this.y = y;
@@ -16,8 +16,6 @@ class Grass {
         ];
 
     }
-
-
     chooseCell(character) {
         var found = [];
         for (var i in this.directions) {
@@ -32,6 +30,9 @@ class Grass {
         return found;
     }
 
+}
+
+class Grass extends LivingCreature {
 
     mul() {
         this.multiply++;
@@ -46,12 +47,10 @@ class Grass {
 }
 
 
-class GrassEater {
+class GrassEater extends LivingCreature {
     constructor(x, y, index) {
-        this.x = x;
-        this.y = y;
-        this.index = index;
-        this.energy = 6;
+        super(x, y, index)
+        this.energy = 6
     }
 
     getNewCoordinates() {
@@ -69,22 +68,12 @@ class GrassEater {
 
     chooseCell(character) {
         this.getNewCoordinates();
-        var found = [];
-        for (var i in this.directions) {
-            var x = this.directions[i][0];
-            var y = this.directions[i][1];
-            if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
-                if (matrix[y][x] == character) {
-                    found.push(this.directions[i]);
-                }
-            }
-        }
-        return found;
+       return super.chooseCell(character)
     }
- 
+
     move() {
 
- 
+
         var newCell = random(this.chooseCell(0));
 
         if (newCell) {
@@ -163,12 +152,10 @@ class GrassEater {
 }
 
 
-class Predator {
+class Predator extends LivingCreature {
     constructor(x, y, index) {
-        this.x = x;
-        this.y = y;
-        this.index = index;
-        this.energy = 5;
+        super(x,y, index)
+        this.energy=6
     }
 
     getNewCoordinates() {
@@ -184,19 +171,9 @@ class Predator {
         ];
     }
 
-    chooseCell(character) {
+    chooseCell(character)  {
         this.getNewCoordinates();
-        var found = [];
-        for (var i in this.directions) {
-            var x = this.directions[i][0];
-            var y = this.directions[i][1];
-            if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
-                if (matrix[y][x] == character) {
-                    found.push(this.directions[i]);
-                }
-            }
-        }
-        return found;
+     return super.chooseCell(character)
     }
     move() {
         var newCell = random(this.chooseCell(0));
@@ -290,37 +267,7 @@ class Predator {
 }
 
 
-class SpoilGrass {
-    constructor(x, y, index) {
-        this.x = x;
-        this.y = y;
-        this.index = index;
-        this.multiply = 0;
-        this.directions = [
-            [this.x - 1, this.y - 1],
-            [this.x, this.y - 1],
-            [this.x + 1, this.y - 1],
-            [this.x - 1, this.y],
-            [this.x + 1, this.y],
-            [this.x - 1, this.y + 1],
-            [this.x, this.y + 1],
-            [this.x + 1, this.y + 1]
-        ];
-    }
-    chooseCell(character) {
-        var found = [];
-        for (var i in this.directions) {
-            var x = this.directions[i][0];
-            var y = this.directions[i][1];
-            if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
-                if (matrix[y][x] == character) {
-                    found.push(this.directions[i]);
-                }
-            }
-        }
-        return found;
-    }
-
+class SpoilGrass extends LivingCreature {
 
     eat() {
         var newCell = random(this.chooseCell(2));
@@ -358,13 +305,9 @@ class SpoilGrass {
     }
 }
 
-class Farmer {
-    constructor(x, y, index) {
-        this.x = x;
-        this.y = y;
-        this.index = index;
-        this.multiply = 0;
-    }
+class Farmer extends LivingCreature{
+    
+    
 
     getNewCoordinates() {
         this.directions = [
@@ -381,17 +324,7 @@ class Farmer {
 
     chooseCell(character) {
         this.getNewCoordinates();
-        var found = [];
-        for (var i in this.directions) {
-            var x = this.directions[i][0];
-            var y = this.directions[i][1];
-            if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
-                if (matrix[y][x] == character) {
-                    found.push(this.directions[i]);
-                }
-            }
-        }
-        return found;
+        return super.chooseCell(character)
     }
 
     hndzel() {
@@ -416,7 +349,7 @@ class Farmer {
             }
             spoilGrassArr.splice(i, 8);
             matrix[newY][newX] = 0;
-            
+
 
         }
     }
