@@ -42,9 +42,6 @@ function setup() {
     createCanvas(matrix[0].length * side, matrix.length * side);
     background('#acacac');
 
-
-
-
     for (var y = 0; y < matrix.length; y++) {
         for (var x = 0; x < matrix[y].length; x++) {
 
@@ -78,7 +75,15 @@ function draw() {
         for (var x = 0; x < matrix[y].length; x++) {
 
             if (matrix[y][x] == 1) {
-                fill("green");
+                if(weath == "summer") {
+                    fill("green");
+                }else if (weath == "autumn") {
+                    fill("#333300");
+                }else if (weath == "winter") {
+                    fill("white");
+                }else if (weath == "spring") {
+                    fill("#4dffa6");
+                }
                 rect(x * side, y * side, side, side);
             }
             else if (matrix[y][x] == 2) {

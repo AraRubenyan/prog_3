@@ -1,0 +1,25 @@
+{
+  "name": "prog_3",
+  "version": "1.0.0",
+  "main": "LivingCreature.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AraRubenyan/prog_3.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AraRubenyan/prog_3/issues"
+  },
+  "homepage": "https://github.com/AraRubenyan/prog_3#readme",
+  "dependencies": {
+    "express": "^4.17.3",
+    "socket.io": "^4.4.1"
+  },
+  "devDependencies": {},
+  "description": ""
+}

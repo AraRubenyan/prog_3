@@ -1,42 +1,10 @@
-class LivingCreature {
-    constructor(x, y, index) {
-        this.x = x;
-        this.y = y;
-        this.index = index;
-        this.multiply = 0;
-        this.directions = [
-            [this.x - 1, this.y - 1],
-            [this.x, this.y - 1],
-            [this.x + 1, this.y - 1],
-            [this.x - 1, this.y],
-            [this.x + 1, this.y],
-            [this.x - 1, this.y + 1],
-            [this.x, this.y + 1],
-            [this.x + 1, this.y + 1]
-        ];
+let LivingCreature = require('./LivingCreature')
 
-    }
-    chooseCell(character) {
-        var found = [];
-        for (var i in this.directions) {
-            var x = this.directions[i][0];
-            var y = this.directions[i][1];
-            if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
-                if (matrix[y][x] == character) {
-                    found.push(this.directions[i]);
-                }
-            }
-        }
-        return found;
-    }
-
-}
-
-class Grass extends LivingCreature {
-
+module.exports = class Grass extends LivingCreature {
     mul() {
         this.multiply++;
-        var newCell = random(this.chooseCell(0));
+        let chooseCells = this.chooseCell(0)
+        var newCell = chooseCells[Math.floor(Math.random() * chooseCells)]
         if (this.multiply >= 15 && newCell) {
             var newGrass = new Grass(newCell[0], newCell[1], this.index);
             grassArr.push(newGrass);
@@ -47,7 +15,7 @@ class Grass extends LivingCreature {
 }
 
 
-class GrassEater extends LivingCreature {
+module.exports = class GrassEater extends LivingCreature {
     constructor(x, y, index) {
         super(x, y, index)
         this.energy = 6
@@ -74,7 +42,8 @@ class GrassEater extends LivingCreature {
     move() {
 
 
-        var newCell = random(this.chooseCell(0));
+        let chooseCells = this.chooseCell(0)
+        var newCell = chooseCells[Math.floor(Math.random() * chooseCells)]
 
         if (newCell) {
             var newX = newCell[0];
@@ -93,7 +62,8 @@ class GrassEater extends LivingCreature {
     eat() {
 
 
-        var newCell = random(this.chooseCell(1));
+        let chooseCells = this.chooseCell(1)
+        var newCell = chooseCells[Math.floor(Math.random() * chooseCells)]
 
         if (newCell) {
             var newX = newCell[0];
@@ -127,7 +97,8 @@ class GrassEater extends LivingCreature {
     }
     mul() {
 
-        var newCell = random(this.chooseCell(0));
+        let chooseCells = this.chooseCell(0)
+        var newCell = chooseCells[Math.floor(Math.random() * chooseCells)]
 
         if (this.energy >= 8 && newCell) {
             var newGrassEater = new GrassEater(newCell[0], newCell[1], this.index);
@@ -152,7 +123,7 @@ class GrassEater extends LivingCreature {
 }
 
 
-class Predator extends LivingCreature {
+module.exports = class Predator extends LivingCreature {
     constructor(x, y, index) {
         super(x,y, index)
         this.energy=6
@@ -176,8 +147,10 @@ class Predator extends LivingCreature {
      return super.chooseCell(character)
     }
     move() {
-        var newCell = random(this.chooseCell(0));
-        var newCell1 = random(this.chooseCell(1));
+        let chooseCells = this.chooseCell(0)
+        var newCell = chooseCells[Math.floor(Math.random() * chooseCells)]
+        let chooseCells1 = this.chooseCell(1)
+        var newCell1 = chooseCells1[Math.floor(Math.random() * chooseCells1)]
 
         if (newCell) {
             var newX = newCell[0];
@@ -208,8 +181,8 @@ class Predator extends LivingCreature {
     }
     eat() {
 
-
-        var newCell = random(this.chooseCell(2));
+        let chooseCells = this.chooseCell(2)
+        var newCell = chooseCells[Math.floor(Math.random() * chooseCells)]
 
         if (newCell) {
             var newX = newCell[0];
@@ -243,7 +216,8 @@ class Predator extends LivingCreature {
     }
     mul() {
 
-        var newCell = random(this.chooseCell(0));
+        let chooseCells = this.chooseCell(0)
+        var newCell = chooseCells[Math.floor(Math.random() * chooseCells)]
 
         if (this.energy >= 8 && newCell) {
             var newPredator = new Predator(newCell[0], newCell[1], this.index);
@@ -267,10 +241,11 @@ class Predator extends LivingCreature {
 }
 
 
-class SpoilGrass extends LivingCreature {
+module.exports = class SpoilGrass extends LivingCreature {
 
     eat() {
-        var newCell = random(this.chooseCell(2));
+        let chooseCells = this.chooseCell(2)
+        var newCell = chooseCells[Math.floor(Math.random() * chooseCells)]
 
 
         if (newCell) {
@@ -295,7 +270,8 @@ class SpoilGrass extends LivingCreature {
     }
     mul() {
         this.multiply++;
-        var newCell = random(this.chooseCell(0));
+        let chooseCells = this.chooseCell(0)
+        var newCell = chooseCells[Math.floor(Math.random() * chooseCells)]
         if (this.multiply >= 1 && newCell) {
             var newSpoilGrass = new SpoilGrass(newCell[0], newCell[1], this.index);
             spoilGrassArr.push(newSpoilGrass);
@@ -305,7 +281,7 @@ class SpoilGrass extends LivingCreature {
     }
 }
 
-class Farmer extends LivingCreature{
+module.exports = class Farmer extends LivingCreature{
     
     
 
@@ -328,7 +304,8 @@ class Farmer extends LivingCreature{
     }
 
     hndzel() {
-        var newCell = random(this.chooseCell(4));
+        let chooseCells = this.chooseCell(4)
+        var newCell = chooseCells[Math.floor(Math.random() * chooseCells)]
 
         if (newCell) {
             var newX = newCell[0];
@@ -354,7 +331,8 @@ class Farmer extends LivingCreature{
         }
     }
     move() {
-        var newCell = random(this.chooseCell(1));
+        let chooseCells = this.chooseCell(1)
+        var newCell = chooseCells[Math.floor(Math.random() * chooseCells)]
 
 
         if (newCell) {

@@ -3,11 +3,22 @@
 <head>
 	<title></title>
 	<meta charset="utf8">
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.14/p5.js"></script>
-    <script src="class.js"></script>
-	  <script src="script.js"></script>
 </head>
 <body>
+	<script src="socket.io/socket.io.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.14/p5.js"></script>
+	<script src="client.js"></script>
 
+	<ul>
+		<li>
+			<button onclick="killSpoilGrass()">Kill Spoil Grass</button>
+		</li>
+		<li>
+			<button onclick="farmerToPredator()">farmer To Predator</button>
+		</li>
+		<li>
+			<button onclick="addGrassEater()">Add grass eater</button>
+		</li>
+	</ul>
 </body>
 </html>
